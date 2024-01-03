@@ -1,0 +1,22 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+    <title>@ViewBag.Title</title>
+    <link href="~/Imagenes/favicon.png" rel="shortcut icon" type="image/x-icon" />
+    @RenderSection("estilos",required:false)
+</head>
+<body>
+    <header>
+        <div class="contenedor">
+            <h2>@ViewBag.Title</h2>
+            <div class="usuario"><h2>Ricardo Segovia Toledo</h2></div>
+        </div>    
+    </header>
+    <section>
+        @RenderBody()
+    </section>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

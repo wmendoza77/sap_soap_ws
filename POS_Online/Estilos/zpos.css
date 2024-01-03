@@ -1,0 +1,59 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Tahoma,Verdana,Calibri;   
+}
+
+header {
+    width: 100%;
+    height:32px;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    background:#B0C6DC;
+    padding-top:4px;
+}
+
+body, .bloqueada{
+    background: #EAF1F6;
+    font-size:12px;
+}
+
+
+
+section {
+    /*width: 100%;*/
+    margin-bottom: 25px;
+
+}
+
+a {
+    text-decoration:none;
+}
+
+.contenedor {
+    width:98%;
+    margin:auto;
+}
+
+.cabecera {
+    background:#C3D5E4;
+}
+
+.detalle {
+    background:#CBDBEA;
+}
+
+input:read-only {
+    background-color:#C3D5E4;
+}
+
+.usuario {
+    top:0;
+    position:fixed;
+    z-index:50;
+    /*font-size:20px;*/
+    padding-top:4px;
+    right:100px;
+}

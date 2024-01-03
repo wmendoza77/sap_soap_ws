@@ -1,0 +1,37 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    <link href="~/Estilos/soporte.css" rel="stylesheet" />
+    <link href="~/Estilos/login.css" rel="stylesheet" />
+    <!--<meta http-equiv="X-UA-Compatible" content="IE=8" />-->
+</head>
+<body>
+    <br />
+    <div class="contendor">
+        <section class="titulo">
+            <h1>POS ONLINE</h1>
+        </section>
+        <div class="contenedor3">
+            <section class="titulo"><h3>Ingreso al Sistema</h3></section>
+            <div class="contenedor2">
+                <div class="caja">Usuario:</div>
+                <input class="caja" id="txtUsuario" type="text" placeholder="Usuario" onkeyup="saltar(event,0)"/><br>
+                <div class="caja">Contraseña:</div>
+                <input class="caja" id="txtPassword" type="password" placeholder="Contraseña" onkeyup="saltar(event,1)"/>
+                <a class="boton" href="#" id="btnAceptar">Aceptar</a>
+                <a class="boton" href="#" id="btnCancelar">Cancelar</a>
+            </div>
+        </div>
+    </div>
+    <script src="~/Scripts/Login.js"></script>
+    <script src="~/Scripts/general.js"></script>
+    <script src="~/Scripts/md5.js"></script>
+</body>
+</html>

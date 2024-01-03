@@ -1,0 +1,152 @@
+﻿@{
+    ViewBag.Title = "Punto de venta online";
+    Layout = "~/Views/Shared/_Pedido.cshtml";
+}
+
+@section estilos{
+    <link href="~/Estilos/zpos.css" rel="stylesheet" />
+    <link href="~/Estilos/zpos_pedido.css" rel="stylesheet" />
+    <link href="~/Estilos/fontello.css" rel="stylesheet" />
+}
+
+<div class="contenedor">
+    <div>
+        <div class="cabecera" style="padding-top:2px; padding-bottom:2px;">
+            Datos cabecera
+        </div>
+        <table class="tabla_cabecera">
+            <tbody>
+                <tr>
+                    <td class="c130 etiqueta_fila_cabecera">Caja</td>
+                    <td class="c100 "><input class="caja bloqueada" id="txtCaja" readonly="readonly" value="1" onfocus="this.blur()"/></td>
+                    <td class="c200"><label id="lblCaja"></label></td>
+                    <td class="c130 etiqueta_fila_cabecera">Fecha</td>
+                    <td colspan="2"><input class="caja bloqueada" id="txtFecha" readonly="readonly"/></td>
+                    <td class="c20"></td>   <td class="c20"></td>   <td class="c20"></td>   <td class="c20"></td>
+                    <td class="c20"></td>   <td class="c20"></td>   <td class="c20"></td>   <td class="c20"></td>
+                </tr>
+                <tr>
+                    <td class="etiqueta_fila_cabecera">Usuario</td>
+                    <td><input class="caja bloqueada" id="txtUsuario" value="VTAS2DOANILLO" readonly="readonly"/></td>
+                    <td><label id="lblUsuario"></label></td>
+                    <td class="etiqueta_fila_cabecera">Soc/Org.vta/Canal/Sec</td>
+                    <td class="c40"><input class="caja bloqueada" id="txtSociedad" readonly="readonly"/></td>
+                    <td class="c40"><input class="caja bloqueada" id="txtOrgVentas" readonly="readonly"/></td>
+                    <td><input class="caja bloqueada" id="txtCanal" readonly="readonly"/></td>
+                    <td><input class="caja bloqueada" id="txtSector" readonly="readonly"/></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td>
+                </tr>
+                <tr>
+                    <td class="etiqueta_fila_cabecera">Vendedor</td>
+                    <td><input class="caja bloqueada" id="txtVendedor" readonly="readonly"/></td>
+                    <td><label id="lblVendedor"></label></td>
+                    <td class="etiqueta_fila_cabecera">Oficina ventas</td>
+                    <td><input class="caja bloqueada" id="txtOficinaVentas" readonly="readonly"/></td>
+                    <td colspan="3">Cond.pago</td>
+                    <td colspan="4"><input class="caja bloqueada" id="txtCondPago" readonly="readonly"/></td>
+                    <td></td><td></td>
+                </tr>
+                <tr>
+                    <td class="etiqueta_fila_cabecera">Buscar Cliente</td>
+                    <td><input class="caja" id="txtBuscarCliente" onkeydown="buscarCliente(event,1);"/></td>
+                    <td></td>
+                    <td class="etiqueta_fila_cabecera">Pedido/Entr/Factura</td>
+                    <td colspan="2"><input class="caja bloqueada" id="txtPedido" readonly="readonly"/></td>
+                    <td colspan="4"><input class="caja bloqueada" id="txtEntrega" readonly="readonly"/></td>
+                    <td colspan="4"><input class="caja bloqueada" id="txtFactura" readonly="readonly"/></td>
+                </tr>
+                <tr>
+                    <td class="etiqueta_fila_cabecera">Cliente</td>
+                    <td><input class="caja" id="txtNroDeudor" onkeydown="buscarCliente(event,2);"/></td>
+                    <td><label id="lblNroDeudor"></label></td>
+                    <td class="etiqueta_fila_cabecera">Grupo clientes</td>
+                    <td><input class="caja bloqueada" id="txtGrupoCliente" readonly="readonly"/></td>
+                    <td colspan="5"><input class="caja bloqueada" id="txtNomGrupoCliente" readonly="readonly"/></td>
+                    <td></td><td></td><td></td><td></td>
+                </tr>
+                <tr>
+                    <td class="etiqueta_fila_cabecera">Dest. Mercancías</td>
+                    <td><input class="caja" id="txtDestMercaderias" /></td>
+                    <td><label id="lblDestMercaderias"></label></td>
+                    <td class="etiqueta_fila_cabecera">Moneda</td>
+                    <td><input class="caja" id="txtMoneda" readonly="readonly"/></td>
+                    <td colspan="5">Boliviano</td>
+                    <td></td><td></td><td></td><td></td>
+                </tr>
+            </tbody>
+        </table>
+        <br />
+        <table border="0" class="tabla_detalle" id="tabla_detalle">
+            <thead class="cabecera">
+                <tr class="fila_cabecera">
+                    <td class="c20"></td>
+                    <td class="c100">Material</td>
+                    <td class="">Descripción</td>
+                    <td class="c40">Ce.</td>
+                    <td class="c40">Alm.</td>
+                    <td class="c75">Cant Disp</td>
+                    <td class="c75">Cant UMV</td>
+                    <td class="c40">UM</td>
+                    <td class="c100">Precio un.</td>
+                    <td class="c100">Precio Bruto</td>
+                    <td class="c100">Descuento</td>
+                    <td class="c75">%DescMan</td>
+                    <td class="c100">Precio Neto</td>
+                    <td class="c100">I.V.A.</td>
+                </tr>
+            </thead>
+            <tbody id="tbDetalle_Pedido">
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="modal" id="divBusqClientes">
+    <div class="contenido_modal">
+        <div class="contenedor">
+            <h2>Búsqueda de Clientes</h2>
+            <input type="button" value="Cerrar" onclick="cerrarDiv(this)"/>
+        </div>
+    </div>
+</div>
+<div class="modal" id="divBusqMateriales">
+    <div class="contenido_modal">
+        <div class="cabecera" style="padding:2px;">
+            <h2 class="cabecera">Búsqueda de Artículos</h2>
+        </div>
+        <br />
+        <div class="contenedor">
+            <table>
+                <tr>
+                    <td class="c130 etiqueta_fila_cabecera">Descripción</td>
+                    <td class="c200"><input class="caja" id="GV_ZZ_DESCRIPCION" onkeydown="buscarArticulo(event);"/></td>
+                </tr>
+            </table>
+            <table>
+                <tr>
+                    <td class="c130 etiqueta_fila_cabecera">Tamaño/Dimensión</td>
+                    <td class="c130"><input class="caja" id="GV_GROES" onkeydown="buscarArticulo(event);"/></td>
+                </tr>
+            </table>
+            <table>
+                <tr>
+                    <td class="c130 etiqueta_fila_cabecera">Aplicación</td>
+                    <td class="c200"><input class="caja" id="GV_ZZ_APLICACION" onkeydown="buscarArticulo(event);"/></td>
+                </tr>
+            </table>
+            <table>
+                <tr>
+                    <td class="c130 etiqueta_fila_cabecera">Artículo</td>
+                    <td class="c75"><input class="caja" id="GV_MATNR" onkeydown="buscarArticulo(event);"/></td>
+                </tr>
+            </table>
+            <br />
+            <div class="contenedor result_material">
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/Scripts/general.js"></script>
+    <script src="~/Scripts/zpos_pedido.js"></script>
+}
